@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_currency_list"
+        android:icon="@drawable/baseline_euro_symbol_black_18dp"
+        android:title="@string/title_currency_list" />
+
+    <item
+        android:id="@+id/navigation_converter"
+        android:icon="@drawable/baseline_sync_alt_black_18dp"
+        android:title="@string/title_converter" />
+
+</menu>
