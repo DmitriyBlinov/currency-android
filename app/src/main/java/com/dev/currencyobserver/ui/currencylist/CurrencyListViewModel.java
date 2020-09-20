@@ -1,19 +1,19 @@
 package com.dev.currencyobserver.ui.currencylist;
 
+import android.widget.TableLayout;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class CurrencyListViewModel extends ViewModel {
-
-    private MutableLiveData<String> mText;
+    private MutableLiveData<TableLayout> mTableLayout;
 
     public CurrencyListViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is currency list fragment");
+        mTableLayout = new MutableLiveData<>();
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public LiveData<TableLayout> getTable() {
+        return mTableLayout;
     }
 }

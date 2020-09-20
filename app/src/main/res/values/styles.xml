@@ -7,4 +7,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="text" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="counterTextError" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@android:color/holo_orange_dark</item>
+    </style>
+
 </resources>

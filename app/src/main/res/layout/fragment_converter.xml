@@ -6,39 +6,37 @@
     android:layout_height="match_parent"
     tools:context=".ui.converter.ConverterFragment">
 
-    <ImageView
-        android:id="@+id/convertFromImage"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearForSpinner"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/baseline_euro_symbol_black_18dp"
-        app:layout_constraintBottom_toTopOf="@+id/convertFrom"
-        app:layout_constraintStart_toStartOf="@+id/convertFrom"
-        app:layout_constraintEnd_toEndOf="@+id/convertFrom"
-        app:layout_constraintTop_toTopOf="@+id/convertFrom" />
-
-    <ImageView
-        android:id="@+id/converterToImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/baseline_euro_symbol_black_18dp"
-        app:layout_constraintBottom_toTopOf="@+id/convertTo"
-        app:layout_constraintStart_toStartOf="@+id/convertTo"
-        app:layout_constraintEnd_toEndOf="@+id/convertTo"
-        app:layout_constraintTop_toTopOf="@+id/convertTo" />
+        app:layout_constraintBottom_toTopOf="@+id/converterImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             />
+    </LinearLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/convertFrom"
         android:layout_width="120dp"
-        android:layout_height="50dp"
-        android:hint="@string/placeholder_number"
+        android:layout_height="90dp"
+        android:hint="@string/convertHint"
+        app:counterOverflowTextAppearance="@style/counterTextError"
+        app:counterEnabled="true"
+        app:counterMaxLength="9"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/convertTo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/convertFromField"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -55,17 +53,29 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/convertTo"
         android:layout_width="120dp"
-        android:layout_height="50dp"
-        android:hint="@string/placeholder_number"
+        android:layout_height="90dp"
+
+        android:enabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/convertFrom">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/convertToField"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/convertButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/convertButtonText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/converterImage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
