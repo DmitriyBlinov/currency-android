@@ -21,14 +21,14 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/convertFrom"
-        android:layout_width="120dp"
+        android:layout_width="160dp"
         android:layout_height="90dp"
         android:hint="@string/convertHint"
         app:counterOverflowTextAppearance="@style/counterTextError"
         app:counterEnabled="true"
         app:counterMaxLength="9"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/convertTo"
+        app:layout_constraintEnd_toStartOf="@+id/converterImage"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -36,7 +36,8 @@
             android:id="@+id/convertFromField"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="number"/>
+            android:inputType="number"
+            android:maxLength="10"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -52,14 +53,13 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/convertTo"
-        android:layout_width="120dp"
+        android:layout_width="160dp"
         android:layout_height="90dp"
-
         android:enabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/convertFrom">
+        app:layout_constraintStart_toEndOf="@id/converterImage">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/convertToField"

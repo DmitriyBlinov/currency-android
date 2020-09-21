@@ -14,12 +14,13 @@
         <TableLayout
             android:id="@+id/currencyTable"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:shrinkColumns="1">
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:shrinkColumns="0, true">
+                android:shrinkColumns="1">
 
                 <TextView
                     android:id="@+id/textView"
@@ -31,12 +32,14 @@
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     style="@style/text"
                     android:text="@string/nameColumnText" />
                 <TextView
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     style="@style/text"
                     android:text="@string/priceColumnText" />
 

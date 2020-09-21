@@ -3,7 +3,7 @@
     <string name="title_currency_list">Currency List</string>
     <string name="title_converter">Converter</string>
     <string name="placeholder_number">0</string>
-    <string name="nominalColumnText">НОМ.</string>
+    <string name="nominalColumnText">НОМИНАЛ</string>
     <string name="nameColumnText">НАИМЕНОВАНИЕ</string>
     <string name="priceColumnText">КУРС</string>
     <string name="convertButtonText">ПЕРЕВЕСТИ</string>
