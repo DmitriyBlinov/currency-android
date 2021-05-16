@@ -103,7 +103,7 @@ public class ConverterFragment extends Fragment {
             } else {
                 double inputValue = Double.parseDouble(inputText);
                 double outputValue = (inputValue * currentValue) / currentNominal;
-                String outputText = String.format("%.2f", outputValue);
+                String outputText = String.format("%.2f", outputValue) + "₽";
                 convertToInput.setText(outputText);
             }
         });
