@@ -1,10 +1,10 @@
-package com.dev.currencyobserver;
+package com.dev.currencyobserver.ui.currencylist;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.HashMap;
 
-public class CurrencyList {
+public class CurrencyListData {
     @SerializedName("Date")
     private String date;
     @SerializedName("PreviousDate")
@@ -16,7 +16,7 @@ public class CurrencyList {
     @SerializedName("Valute")
     public HashMap<String, Valute> valutes;
 
-    public CurrencyList(String date, HashMap<String, Valute> valutes){
+    public CurrencyListData(String date, HashMap<String, Valute> valutes){
         this.date = date;
         this.valutes = valutes;
     }

@@ -6,10 +6,10 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class CurrencyListViewModel extends ViewModel {
+public class CurrencyListView extends ViewModel {
     private MutableLiveData<TableLayout> mTableLayout;
 
-    public CurrencyListViewModel() {
+    public CurrencyListView() {
         mTableLayout = new MutableLiveData<>();
     }
 

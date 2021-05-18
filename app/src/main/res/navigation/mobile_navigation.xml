@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/navigation_currency_list"
-        android:name="com.dev.currencyobserver.ui.currencylist.CurrencyListFragment"
+        android:name="com.dev.currencyobserver.ui.currencylist.CurrencyListPresenter"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_currency_list" />
 
     <fragment
         android:id="@+id/navigation_converter"
-        android:name="com.dev.currencyobserver.ui.converter.ConverterFragment"
+        android:name="com.dev.currencyobserver.ui.converter.ConverterPresenter"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_converter" />
 </navigation>

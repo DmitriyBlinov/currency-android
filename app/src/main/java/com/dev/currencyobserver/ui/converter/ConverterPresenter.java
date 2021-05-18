@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.dev.currencyobserver.CurrencyList;
+import com.dev.currencyobserver.ui.currencylist.CurrencyListData;
 import com.dev.currencyobserver.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.Gson;
@@ -27,60 +27,42 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ConverterFragment extends Fragment {
-    private ConverterViewModel converterViewModel;
+public class ConverterPresenter extends Fragment {
+    private ConverterView converterView;
     private double currentValue;
     private double currentNominal;
-    private HashMap<String, Double> values;
-    private HashMap<String, Integer> nominals;
+    private ConverterModel converterModel;
+
     private Spinner spinner;
     private View root;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        converterViewModel = new ViewModelProvider(this).get(ConverterViewModel.class);
+        converterView = new ViewModelProvider(this).get(ConverterView.class);
         root = inflater.inflate(R.layout.fragment_converter, container, false);
 
         spinner = root.findViewById(R.id.spinner);
-
         Ion.with(getActivity().getApplicationContext())
                 .load("https://www.cbr-xml-daily.ru/daily_json.js")
                 .asJsonObject()
                 .setCallback((Exception e, JsonObject result) -> {
-                    processJson(result);
+                    converterModel = new ConverterModel(result);
+                    loadSpinnerValues(converterModel.getValutesArray());
                     setConvertButtonOnclickListener();
                 });
+
         return root;
     }
 
-    private void processJson(JsonObject result) {
-        Gson gson = new Gson();
-        Type collectionType = new TypeToken<HashMap<String, CurrencyList.Valute>>(){}.getType();
-        HashMap<String, CurrencyList.Valute> valutes = gson.fromJson(result.get("Valute"), collectionType);
-        CurrencyList currencyList = new CurrencyList(result.get("Date").toString(), valutes);
-
-        ArrayList<String> spinnerArray = new ArrayList<>();
-        values = new HashMap<>();
-        nominals = new HashMap<>();
-
-        for (Map.Entry entry : currencyList.getValutes().entrySet()) {
-            CurrencyList.Valute currentValute = (CurrencyList.Valute) entry.getValue();
-            String name = currentValute.getName();
-            spinnerArray.add(name);
-            values.put(name, currentValute.getValue());
-            nominals.put(name, currentValute.getNominal());
-        }
-        loadSpinnerValues(spinnerArray);
-    }
-
     private void loadSpinnerValues(ArrayList<String> spinnerArray) {
+        //TODO это перенести во View
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, spinnerArray);
         spinner.setAdapter(spinnerArrayAdapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View itemSelected, int selectedItemPosition, long selectedId) {
-                String selectedItem = spinner.getSelectedItem().toString();
-                currentValue = values.get(selectedItem);
-                currentNominal = nominals.get(selectedItem);
+                String selectedValuteName = spinner.getSelectedItem().toString();
+                currentValue = converterModel.getValue(selectedValuteName);
+                currentNominal = converterModel.getNominals(selectedValuteName);
             }
             public void onNothingSelected(AdapterView<?> parent) {
             }

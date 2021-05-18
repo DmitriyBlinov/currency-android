@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.dev.currencyobserver.CurrencyList;
 import com.dev.currencyobserver.R;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -23,15 +22,15 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CurrencyListFragment extends Fragment {
-    private CurrencyListViewModel currencyListViewModel;
-    private HashMap<String, CurrencyList.Valute> valutes;
-    private CurrencyList currencyList;
+public class CurrencyListPresenter extends Fragment {
+    private CurrencyListView currencyListView;
+    private HashMap<String, CurrencyListData.Valute> valutes;
+    private CurrencyListData currencyListData;
     private View root;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        currencyListViewModel = new ViewModelProvider(this).get(CurrencyListViewModel.class);
+        currencyListView = new ViewModelProvider(this).get(CurrencyListView.class);
         root = inflater.inflate(R.layout.fragment_currency_list, container, false);
 
         Ion.with(getActivity().getApplicationContext())
@@ -45,16 +44,16 @@ public class CurrencyListFragment extends Fragment {
 
     private void processJson(JsonObject result) {
         Gson gson = new Gson();
-        Type collectionType = new TypeToken<HashMap<String, CurrencyList.Valute>>(){}.getType();
+        Type collectionType = new TypeToken<HashMap<String, CurrencyListData.Valute>>(){}.getType();
         valutes = gson.fromJson(result.get("Valute"), collectionType);
-        currencyList = new CurrencyList(result.get("Date").toString(), valutes);
-        fillTable(currencyList);
+        currencyListData = new CurrencyListData(result.get("Date").toString(), valutes);
+        fillTable(currencyListData);
     }
 
-    private void fillTable(CurrencyList currencyList) {
+    private void fillTable(CurrencyListData currencyListData) {
         TableLayout tableLayout = root.findViewById(R.id.currencyTable);
-        for (Map.Entry entry : currencyList.getValutes().entrySet()) {
-            CurrencyList.Valute currentValute = (CurrencyList.Valute)entry.getValue();
+        for (Map.Entry entry : currencyListData.getValutes().entrySet()) {
+            CurrencyListData.Valute currentValute = (CurrencyListData.Valute)entry.getValue();
             String nominal = String.valueOf(currentValute.getNominal());
             String name = currentValute.getName();
             String value = String.valueOf(currentValute.getValue());
